@@ -59,3 +59,9 @@ async def update_user_token(email: str, token: str):
         "UPDATE users SET token = :token WHERE email = :email",
         {"email": email, "token": token},
     )
+
+async def create_user(email: str, password_hash: str):
+    await database.execute(
+        "INSERT INTO users (email, password) VALUES (:email, :password)",
+        {"email": email, "password": password_hash},
+    )
